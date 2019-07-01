@@ -11,7 +11,7 @@ start:
 	docker-compose up --build
 
 db-schema:
-	docker exec -i postgres psql $(PG_CONNECTION_URI) -t < scripts/db-schema.sql
+	docker exec -i waldo-app python src/services/models.py
 
 psql:
 	docker exec -it postgres psql $(PG_CONNECTION_URI)

@@ -1,13 +1,24 @@
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
-DROP TABLE IF EXISTS photos;
+DROP TABLE IF EXISTS photo_thumbnails;
 DROP TYPE IF EXISTS photo_status;
+DROP TABLE IF EXISTS photos;
 
-CREATE TYPE photo_status as enum('pending', 'completed');
+CREATE TYPE photo_status as enum('pending','processing','failed','completed');
+
 CREATE TABLE photos (
     uuid uuid DEFAULT gen_random_uuid() PRIMARY KEY,
     url text NOT NULL,
     status photo_status DEFAULT 'pending' NOT NULL,
+    created_at timestamp with time zone DEFAULT now() NOT NULL
+);
+
+CREATE TABLE photo_thumbnails (
+    uuid uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+    photo_uuid uuid REFERENCES photos(uuid) NOT NULL,
+    width SMALLINT NOT NULL,
+    height SMALLINT NOT NULL,
+    url text NOT NULL,
     created_at timestamp with time zone DEFAULT now() NOT NULL
 );
 
