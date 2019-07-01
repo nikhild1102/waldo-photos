@@ -17,7 +17,7 @@ class Photos(db.Model):
 
 
 class PhotoThumbnails(db.Model):
-  uuid= db.Column(UUID(as_uuid=True), unique=True, primary_key=True)
+  uuid= db.Column(UUID(as_uuid=True), unique=True, default=uuid4, primary_key=True)
   photo_uuid= db.Column(UUID(as_uuid=True), db.ForeignKey('photos.uuid'), nullable=False)
   width= db.Column(db.Integer, nullable=False)
   height= db.Column(db.Integer, nullable=False)
@@ -27,7 +27,6 @@ class PhotoThumbnails(db.Model):
 if __name__ == '__main__':
   db.drop_all(bind=None)
   db.session.commit()
-
   db.create_all()
   
   photo1 = Photos(url='https://s3.amazonaws.com/waldo-thumbs-dev/large/71840919-e422-552d-8c8d-9b2b360ce98c.jpg')
