@@ -36,15 +36,5 @@ def processPhotos():
   for photo in photoObjects:
     Photos.query.filter_by(uuid=photo.uuid).update(dict(status='processing'))
     db.session.commit()
-    result = resizePhoto(photo.url, size)
-    if result:
-      result.save("/app/waldo-app-thumbs/"+str(photo.uuid)+".JPEG")
-      Photos.query.filter_by(uuid=photo.uuid).update(dict(status='completed'))
-      thumbnail = PhotoThumbnails(photo_uuid=photo.uuid, width=size[0], height=size[1], url="/app/waldo-app-thumbs/"+str(photo.uuid)+".JPEG" )
-      db.session.add(thumbnail)
-      db.session.commit()
-    else:
-      Photos.query.filter_by(uuid=photo.uuid).update(dict(status='failed'))
-      db.session.commit()
-      pass
+    resizePhoto(photo, size)
   return jsonify({'message':'Processing completed'})
