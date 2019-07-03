@@ -9,6 +9,6 @@ db = SQLAlchemy(app)
 
 if __name__ == '__main__':
 
-  from web import *
+  from views.web import *
 
   app.run(host='0.0.0.0', port=3000)

@@ -1,6 +1,6 @@
 from app import *
-from photoProcessor import resizePhoto
-from models import Photos,PhotoThumbnails,Photo_Status
+from services.photoProcessor import resizePhoto
+from models.models import Photos,PhotoThumbnails,Photo_Status
 from sqlalchemy import and_
 
 size = 320, 320

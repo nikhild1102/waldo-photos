@@ -3,7 +3,7 @@ from celery import Celery
 from PIL import Image
 from io import BytesIO
 from app import *
-from models import Photos,PhotoThumbnails
+from models.models import Photos,PhotoThumbnails
 
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
