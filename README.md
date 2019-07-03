@@ -82,3 +82,19 @@ Consumer should be running on the `waldo-app` container alongside the web app.
 
 - Solution should be using Python 3.7.x, and extending the given setup.
 - Git repository with any required instructions for running it, uploaded on GitHub or GitLab or BitBucket. 
+
+***
+
+### Solution for above Exercise
+
+#### How to start the application ?
+  
+Follow the same process as above ( under Installation ) to start the application.
+
+#### API Endpoints
+
+- Download the Postman Collection from the link : https://www.getpostman.com/collections/54fc54b282ae52a64631
+
+  - http://localhost:3000/photos/pending : Endpoint to fetch the details of photos with pending status.
+
+  - http://localhost:3000/photos/process : Enter the UUID's you want to process for converting it to thumbnails.
